@@ -1,7 +1,5 @@
 <?php
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		include 'transacoes.php';
-		$post = new Post();
 		switch ($_POST['numPost']) {
 			case 1:
 				Post::uploadArquivo();
