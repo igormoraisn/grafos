@@ -38,8 +38,9 @@ function imprimePagina($grafo, $status){
           <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           </div>
           <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">';
-          $niveis = max($grafo->getNivel());
-          for($i=1; $i<=$niveis; $i++){
+          $niveis = $grafo->getNivel();
+          $niveisMax = max($niveis);
+          for($i=1; $i<=$niveisMax; $i++){
             if($i==1){
               echo '<a href="#periodo'. $i .'" class="mdl-layout__tab is-active">PERIODO '. $i .'</a>';
             } else{
@@ -52,8 +53,9 @@ function imprimePagina($grafo, $status){
       <main class="mdl-layout__content">';
       $disciplinas = $grafo->getDisciplinas();
       $nomes = $grafo->getNomes();
-      $tam = count($niveis);
-        for($i=1; $i<=$niveis; $i++){
+      $tam = $grafo->getVertices();
+      $matriz = $grafo->getMatriz();
+        for($i=1; $i<=$niveisMax; $i++){
 
           if($i == 1){
             echo '<div class="mdl-layout__tab-panel is-active" id="periodo'.$i.'">';
@@ -76,10 +78,15 @@ function imprimePagina($grafo, $status){
                   echo '
                   <tr>
                     <td class="mdl-data-table__cell--non-numeric">' . $disciplinas[$j] . '</td>
-                    <td>' . $nomes[$j] . '</td>
-                    <td>Nenhum</td>
+                    <td>' . $nomes[$j] . '</td><td>';
+                    for($l=0;$l<$tam;$l++){
+                      if($matriz[$j][$l] == 1){
+                          echo $nomes[$l].";";
+                      }
+                    }
+                    echo '</td>
                   </tr>';
-                }
+              }
               }
             echo '
             </tbody>

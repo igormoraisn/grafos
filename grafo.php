@@ -17,6 +17,12 @@ class Grafo{
 	public function getNomes(){
 		return $this->nomes;
 	}
+	public function getVertices(){
+		return $this->vertices;
+	}
+	public function getMatriz(){
+		return $this->matriz;
+	}
 	public function Grafo($v){
 		$this->vertices = $v;
 		$this->matriz = array();

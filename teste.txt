@@ -1,11 +1,11 @@
-18
+﻿18
 Programação Imperativa;COMP0197;1
 Cálculo I;MAT064;1
 Fundamentos de Computação;COMP0196;1
 Fundamentos de Matemática para Computação;MAT0104;1
 Métodos e Técnicas de Pesquisa;COMP0337;1
 Vetores e Geometria Analítica;MAT067;1
-Estrutura de Dados I;COMP212;2
+Estrutura de Dados I;COMP0212;2
 Cálculo II;MAT065;2
 Física A;FIS0149;2
 Programação Orientada a Objetos;COMP0198;2
