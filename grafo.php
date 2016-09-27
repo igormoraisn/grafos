@@ -7,16 +7,15 @@ class Grafo{
 	private $nivel;
 	private $total;
 	private $erro;
-	protected $_ts   = array();
+	private $nomes;
 	public function Grafo($v){
 		$this->vertices = $v;
 		$this->matriz = array();
 		$this->disciplinas = array();
 		$this->nivel = array();		
-		$this->total = 0;		
+		$this->nomes = array();	
 		$this->erro = array();
 		for($i=0;$i<$v;$i++){
-			$this->disciplinas[$i] = "";
 			for($j=0;$j<$v;$j++){
 				$this->matriz[$i][$j] = 0;		
 			}		
@@ -25,10 +24,10 @@ class Grafo{
 	public function adicionaAresta($fonte, $destino){
 		$this->matriz[$fonte][$destino] = 1;	
 	}
-	public function adicionaInformacoes($level, $disciplina){
+	public function adicionaInformacoes($level, $disciplina, $nome){
 		$this->nivel[]	= $level;
-		$this->disciplinas[$this->total] = $disciplina;
-		$this->total++;
+		$this->disciplinas[] = $disciplina;
+		$this->nomes[] = $nome;
 	}
 	public function visualizaGrafo(){
 		for($i=0;$i<$this->vertices;$i++){
@@ -49,8 +48,14 @@ class Grafo{
 public function visita($v, $visitado, $pilha) {
     $visitado[$v] = true;
     for ($i = 0; $i < $this->vertices; $i++){
-        if (!$visitado[$i] && $this->matriz[$i][$v] == 1)
+        if (!$visitado[$i] && $this->matriz[$i][$v] == 1){
+				if($this->nivel[$v] <= $this->nivel[$i]){
+					#echo "Erro encontrado em ".$v." -> ".$i; 				
+					echo $this->nomes[$i]." não pode ser pré-requisito de ".$this->nomes[$v];		
+					echo "<br>";		
+				}            
             $this->visita($i, $visitado, $pilha);
+         }
         	elseif($this->matriz[$i][$v] == 1)
         			$this->erro[] = array($i, $v);
         }

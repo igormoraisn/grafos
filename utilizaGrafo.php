@@ -12,7 +12,7 @@ header ('Content-type: text/html; charset=UTF-8');
 		$vetor = $arquivo[$i];
 		$linha = mb_convert_encoding($vetor, "UTF-8", "ASCII");	
 		$parte = explode(";", $vetor);
-		$grafo->adicionaInformacoes($parte[1], $parte[0]);
+		$grafo->adicionaInformacoes($parte[2], $parte[1], $parte[0]);
 	}
 	$requisitos = $arquivo[$i];
 	$anterior = $i;
