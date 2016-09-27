@@ -2,7 +2,7 @@
 
 <html lang="pt-br">
   <head>
-    <?php include 'head.php'; ?>
+    <?php include 'headI.php'; ?>
     <style>
       body{
         text-align: center;
@@ -15,7 +15,7 @@
   <body>
     <!--  O CORPO DO SITE DEVE ESTAR DENTRO DESSA PROXIMA DIV -->
     <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
-      <?php include 'header.php'; head("Teste de Validade da Grade Curricular");?>
+      <?php include 'headerI.php'; head("Teste de Validade da Grade Curricular");?>
       <div class="demo-ribbon"></div>
       <main class="demo-main mdl-layout__content">
         <div class="demo-container mdl-grid">
@@ -24,7 +24,8 @@
             <div class="demo-crumbs mdl-color-text--grey-500">
             </div>
             <h3>Arquivo com Grade Curricular do Curso</h3>
-            <form enctype="multipart/form-data" action="" method="post" name="form" >
+            <form enctype="multipart/form-data" action="post.php" method="post" name="form" >
+            	<input type="hidden" id="numPost" name="numPost" value="1"><!-- Número correspodente ao post -->   
               <p> <input type="file" name="arquivo" /> </p>
               <p><input type="submit" name="enviar" value="Enviar" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" /> </p>
             </form>

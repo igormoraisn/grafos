@@ -4,7 +4,7 @@ header ('Content-type: text/html; charset=UTF-8');
 	include 'grafo.php';
 	date_default_timezone_set('America/Maceio');
 	#$arq = fopen("disciplinas.txt", "r");
-	$arquivo = file('disciplinas.txt', FILE_IGNORE_NEW_LINES);	
+	$arquivo = file('docs/disciplinas.txt', FILE_IGNORE_NEW_LINES);	
 	$vetor = array();	
 	$tamanho = $arquivo[0];
 	$grafo = new Grafo($tamanho);
