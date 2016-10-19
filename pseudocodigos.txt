@@ -1,0 +1,33 @@
+ALGORITMO VISITA(v, P)
+// ENTRADA: v é um vértice a ser visitado, vtx é a lista de vértices do grafo e P uma pilha
+INICIO
+	v.visitado := TRUE;
+
+	PARA TODO w ADJACENTE A v, FAÇA
+	INÍCIO
+		i := 0;
+		SE( ( w.visitado := FALSE ) ENTÃO
+			VISITA(i, vtx, P);
+		SENÃO
+			erro.add( (w, v) );
+
+		i = i + 1;
+	FIM
+
+	pilha.push(v);
+FIM
+
+ALGORITMO VALIDA_GRADE(vtx, n)
+// vtx é a lista de vértices, ordenada em ordem crescente dos níveis das disciplinas, n é o total de vertices 
+INÍCIO
+	PILHA P := VAZIO;
+
+	PARA TODO v EM vtx, FAÇA
+		v.visitado := FALSE;
+
+	PARA i:=0 até n, FAÇA
+		SE( vtx[i].visitado = FALSE ) ENTÃO
+			erro := VISITA(i, P);
+
+	RETORNE erro;
+FIM
