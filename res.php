@@ -1,5 +1,16 @@
 <?php
-function imprimePagina($grafo, $status){
+function imprimePagina($grafo, $status, $erros){
+  $disciplinas = $grafo->getDisciplinas();
+  $nomes = $grafo->getNomes();
+  $tam = $grafo->getVertices();
+  $matriz = $grafo->getMatriz();
+
+  $lista = array();
+  for($linha=0; $linha<sizeof($erros); $linha++){
+    for($coluna=0; $coluna<sizeof($erros[$linha]); $coluna++){
+      array_push($lista, $erros[$linha][$coluna]);
+    }
+  }
   echo '
   <!DOCTYPE html>
 
@@ -9,7 +20,7 @@ function imprimePagina($grafo, $status){
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-      <title>Teste de Grade Curricular</title>
+      <title>Teste de Grade Curricular (' . $status. ' erros encontrados!' . ')</title>
 
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -33,12 +44,11 @@ function imprimePagina($grafo, $status){
           <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           </div>
           <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-            <h3>Resultado do Processamento</h3>
+            <h3>Resultado do Processamento (' . $status. ' erros encontrados!' . ')</h3>
           </div>
           <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           </div>
           <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">';
-          echo $status." erros encontrados!";
           $niveis = $grafo->getNivel();
           $niveisMax = max($niveis);
           for($i=1; $i<=$niveisMax; $i++){
@@ -52,22 +62,22 @@ function imprimePagina($grafo, $status){
         </div>
       </header>
       <main class="mdl-layout__content">';
-      $disciplinas = $grafo->getDisciplinas();
-      $nomes = $grafo->getNomes();
-      $tam = $grafo->getVertices();
-      $matriz = $grafo->getMatriz();
+      
         for($i=1; $i<=$niveisMax; $i++){
-
           if($i == 1){
             echo '<div class="mdl-layout__tab-panel is-active" id="periodo'.$i.'">';
           } else{
             echo '<div class="mdl-layout__tab-panel" id="periodo'.$i.'">';
           }
-
           echo '
           <table class="mdl-data-table mdl-shadow--2dp">
             <thead>
               <tr>
+                <th>
+                  <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="table-header">
+                    <input type="checkbox" id="table-header" class="mdl-checkbox__input"/>
+                  </label>
+                </th>
                 <th class="mdl-data-table__cell--non-numeric">Código</th>
                 <th>Nome da Disciplina</th>
                 <th>Dependências</th>
@@ -76,18 +86,27 @@ function imprimePagina($grafo, $status){
             <tbody>';
               for($j=0; $j<$tam; $j++){
                 if($niveis[$j] == $i){
-                  echo '
-                  <tr>
-                    <td class="mdl-data-table__cell--non-numeric">' . $disciplinas[$j] . '</td>
-                    <td>' . $nomes[$j] . '</td><td>';
-                    for($l=0;$l<$tam;$l++){
-                      if($matriz[$l][$j] == 1){
-                          echo $nomes[$l].";";
+                  echo'
+                    <tr>
+                      <td>
+                        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect mdl-data-table__select" for="table-header">';
+                          if( in_array($j, $lista) ){
+                            echo '<input type="checkbox" id="table-header" class="mdl-checkbox__input" checked />';
+                          } else{
+                            echo '<input type="checkbox" id="table-header" class="mdl-checkbox__input"/>'; 
+                          }
+                  echo' </label>
+                      </td>
+                      <td class="mdl-data-table__cell--non-numeric">' . $disciplinas[$j] . '</td>
+                      <td>' . $nomes[$j] . '</td><td>';
+                      for($l=0;$l<$tam;$l++){
+                        if($matriz[$l][$j] == 1){
+                            echo $nomes[$l].";";
+                        }
                       }
-                    }
-                    echo '</td>
-                  </tr>';
-              }
+                      echo '</td>
+                    </tr>';
+                }
               }
             echo '
             </tbody>

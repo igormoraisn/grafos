@@ -36,7 +36,7 @@ header ('Content-type: text/html; charset=UTF-8');
 	$tam = count($retorno);
 	#print_r($retorno);
 	if($tam != 0){
-		imprimePagina($grafo, $tam);
+		imprimePagina($grafo, $tam, $retorno);
 		#for($i=0;$i<$tam;$i++){
 		#	echo $retorno[$i][0]." ".$retorno[$i][1];
 		#	echo "<br>";

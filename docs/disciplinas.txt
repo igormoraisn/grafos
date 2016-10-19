@@ -1,0 +1,27 @@
+18
+Programação Imperativa;COMP0197;1
+Cálculo I;MAT064;1
+Fundamentos de Computação;COMP0196;1
+Fundamentos de Matemática para Computação;MAT0104;1
+Métodos e Técnicas de Pesquisa;COMP0337;1
+Vetores e Geometria Analítica;MAT067;1
+Estrutura de Dados I;COMP212;2
+Cálculo II;MAT065;2
+Física A;FIS0149;2
+Programação Orientada a Objetos;COMP0198;2
+Lógica para Computação;COMP0233;2
+Circuitos Digitais I;COMP0219;2
+Laboratório de Circuitos Digitais I;COMP0220;2
+Estrutura de Dados II;COMP0213;3
+Álgebra Linear;MAT078;3
+Informática Educativa;COMP0265;4
+Banco de Dados;COMP0311;5
+Desenvolvimento de Software I;COMP0279;5
+7
+COMP0198;COMP0198
+COMP0213;COMP0212
+FIS0149;MAT064;MAT067
+COMP0212;COMP0213
+MAT064;FIS0149
+COMP0196;COMP0279
+MAT078;MAT067
