@@ -7,15 +7,16 @@ header ('Content-type: text/html; charset=UTF-8');
 	#$arq = fopen("disciplinas.txt", "r");
 	$arquivo = file('docs/disciplinas.txt', FILE_IGNORE_NEW_LINES);
 	$vetor = array();
-	$tamanho = $arquivo[0];
+	$tamanho = intval($arquivo[0]);
 	$grafo = new Grafo($tamanho);
-	for($i=1;$i<=$tamanho;$i++){
+	$i = 1;	
+	while($i <= $tamanho){
 		$vetor = $arquivo[$i];
-		$linha = mb_convert_encoding($vetor, "UTF-8", "ASCII");
 		$parte = explode(";", $vetor);
 		$grafo->adicionaInformacoes($parte[2], $parte[1], $parte[0]);
+		$i = $i + 1;	
 	}
-	$requisitos = $arquivo[$i];
+	$requisitos = intval($arquivo[$i]);
 	$anterior = $i;
 	for($i=$anterior+1;$i<=$requisitos+$anterior;$i++){
 		$linha = utf8_decode($arquivo[$i]);
@@ -35,7 +36,7 @@ header ('Content-type: text/html; charset=UTF-8');
 	$tam = count($retorno);
 	#print_r($retorno);
 	if($tam != 0){
-		imprimePagina($grafo, 1);
+		imprimePagina($grafo, $tam);
 		#for($i=0;$i<$tam;$i++){
 		#	echo $retorno[$i][0]." ".$retorno[$i][1];
 		#	echo "<br>";

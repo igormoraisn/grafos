@@ -38,6 +38,7 @@ function imprimePagina($grafo, $status){
           <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           </div>
           <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">';
+          echo $status." erros encontrados!";
           $niveis = $grafo->getNivel();
           $niveisMax = max($niveis);
           for($i=1; $i<=$niveisMax; $i++){
@@ -80,7 +81,7 @@ function imprimePagina($grafo, $status){
                     <td class="mdl-data-table__cell--non-numeric">' . $disciplinas[$j] . '</td>
                     <td>' . $nomes[$j] . '</td><td>';
                     for($l=0;$l<$tam;$l++){
-                      if($matriz[$j][$l] == 1){
+                      if($matriz[$l][$j] == 1){
                           echo $nomes[$l].";";
                       }
                     }
